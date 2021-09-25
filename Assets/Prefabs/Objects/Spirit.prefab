@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1780582215458712055}
   - component: {fileID: 1780582215458712054}
   - component: {fileID: 1780582215458712053}
+  - component: {fileID: 5976543366284647802}
   m_Layer: 0
   m_Name: Spirit
   m_TagString: Spirit
@@ -95,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &1780582215458712054
 ParticleSystem:
@@ -105,7 +106,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780582215458712052}
   serializedVersion: 7
-  lengthInSec: 2.32
+  lengthInSec: 3.52
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -180,7 +181,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 1.65
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -665,7 +666,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 1132
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -724,14 +725,14 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 0
+    type: 2
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: -17.34, y: -26.1, z: 112.03}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -870,7 +871,7 @@ ParticleSystem:
     arc:
       value: 360
       mode: 0
-      spread: 0
+      spread: 0.88
       speed:
         serializedVersion: 2
         minMaxState: 0
@@ -1055,7 +1056,7 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
+          time: 0.41441625
           value: 0
           inSlope: -2
           outSlope: -2
@@ -2471,7 +2472,7 @@ ParticleSystem:
       m_Bits: 4294967295
     influenceList: []
   ClampVelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2634,7 +2635,7 @@ ParticleSystem:
     magnitude:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 4.89
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2692,7 +2693,7 @@ ParticleSystem:
     drag:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 3.28
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2747,7 +2748,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.58
+      scalar: 5.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3126,7 +3127,7 @@ ParticleSystem:
     positionAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.55
+      scalar: 0.74
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3232,7 +3233,7 @@ ParticleSystem:
     sizeAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.16
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3991,7 +3992,7 @@ ParticleSystem:
     maxLights: 20
   TrailModule:
     enabled: 0
-    mode: 0
+    mode: 1
     ratio: 1
     lifetime:
       serializedVersion: 2
@@ -4048,7 +4049,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
-    ribbonCount: 1
+    ribbonCount: 2
     shadowBias: 0.5
     worldSpace: 0
     dieWithParticles: 1
@@ -4124,7 +4125,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.44
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4869,3 +4870,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5976543366284647802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780582215458712052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0a0b4172c53ec489345734fe36fb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

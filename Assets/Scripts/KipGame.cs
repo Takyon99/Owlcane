@@ -51,6 +51,7 @@ public class KipGame : MonoBehaviour
 
             Debug.Log("Collided");
             currentSpawnPoint = other.gameObject.GetComponentInChildren<Transform>().position;
+            
         }
         //falling out of map
         if (other.gameObject.CompareTag("Bounds"))
@@ -64,6 +65,21 @@ public class KipGame : MonoBehaviour
             other.gameObject.SetActive(false);
         }
         
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("WayStone"))
+        {
+            if (spiritTotal >= other.GetComponent<WayStone>().RequiredSpirit() && (Input.GetButton("Channel"))) 
+            {
+
+                other.GetComponent<WayStone>().Activate();
+                other.GetComponent<WayStone>().activated = true;
+                    
+             
+            }
+        }
     }
 
 
