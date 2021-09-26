@@ -10,7 +10,13 @@ public class SpiritScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Tween floating = transform.DOMoveY(transform.position.y + 0.5f, 2).SetEase(Ease.InOutQuart).SetLoops(-1,LoopType.Yoyo);
+        StartCoroutine(Floating());
+    }
+
+    IEnumerator Floating()
+    {
+        yield return new WaitForSeconds(10);
+        Tween floating = transform.DOMoveY(transform.position.y + 0.3f, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 
     // Update is called once per frame

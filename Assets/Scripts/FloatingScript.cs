@@ -12,7 +12,13 @@ public class FloatingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       floater = transform.DOMoveY(transform.position.y + magnitude, time).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+       
+    }
+
+    IEnumerator Floating()
+    {
+        yield return new WaitForSeconds(5);
+        floater = transform.DOLocalMoveY(transform.position.y + magnitude, time).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 
     // Update is called once per frame
