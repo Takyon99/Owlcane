@@ -16,7 +16,7 @@ public class LevelActivation : MonoBehaviour
     {
         Tween start = transform.DOMoveY(transform.position.y - 100f, 0);
         yield return start.WaitForCompletion();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         Tween rise = transform.DOMoveY(transform.position.y + 100f, 5);
     }
 

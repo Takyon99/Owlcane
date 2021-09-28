@@ -18,7 +18,7 @@ public class KipGame : MonoBehaviour
     public Material respawn;
     #endregion
 
-
+    #region METHODS
     public int GetSpirit()
     {
         return spiritTotal;
@@ -42,16 +42,15 @@ public class KipGame : MonoBehaviour
 
 
     }
+    #endregion
 
+    #region MONOBEHAVIOURS
     private void OnTriggerEnter(Collider other)
     {
         //waystone collision event
         if (other.gameObject.CompareTag("WayStone"))
         {
-
-            Debug.Log("Collided");
-            currentSpawnPoint = other.gameObject.GetComponentInChildren<Transform>().position;
-            
+            currentSpawnPoint = other.gameObject.GetComponentInChildren<Transform>().position;   
         }
         //falling out of map
         if (other.gameObject.CompareTag("Bounds"))
@@ -64,6 +63,8 @@ public class KipGame : MonoBehaviour
             spiritTotal++;
             other.gameObject.SetActive(false);
         }
+
+        
         
     }
 
@@ -82,7 +83,15 @@ public class KipGame : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.CompareTag("Fadeplatform"))
+        {
+            StartCoroutine(collision.collider.GetComponent<FadePlatformScript>().Fading());
+        }
+    }
 
+    #endregion
 
 
 

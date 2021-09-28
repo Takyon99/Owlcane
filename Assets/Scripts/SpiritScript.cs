@@ -15,7 +15,7 @@ public class SpiritScript : MonoBehaviour
 
     IEnumerator Floating()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(7);
         Tween floating = transform.DOMoveY(transform.position.y + 0.3f, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 
