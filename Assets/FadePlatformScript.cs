@@ -16,6 +16,7 @@ public class FadePlatformScript : MonoBehaviour
     void Start()
     {
         main = GetComponent<MeshRenderer>().material;
+        StartCoroutine(Fading());
 
     }
 
@@ -30,13 +31,15 @@ public class FadePlatformScript : MonoBehaviour
 
     public IEnumerator Fading()
     {
-        
-        GetComponent<MeshRenderer>().material = fade;
-        Tween Drop = transform.DOMoveY(transform.position.y - 100, 3).SetEase(Ease.InExpo);
-        yield return Drop.WaitForCompletion();
-        Tween Rise = transform.DOMoveY(transform.position.y + 100, 3);
-        yield return Rise.WaitForCompletion();
-        GetComponent<MeshRenderer>().material = main;
+        while (this != null)
+        {
+            yield return new WaitForSeconds(3);
+            GetComponent<MeshRenderer>().material = fade;
+            GetComponent<Collider>().enabled = false;
+            yield return new WaitForSeconds(3);
+            GetComponent<MeshRenderer>().material = sandstone;
+            GetComponent<Collider>().enabled = true;
+        }
 
 
     }

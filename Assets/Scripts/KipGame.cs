@@ -83,13 +83,13 @@ public class KipGame : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.gameObject.CompareTag("Fadeplatform"))
-        {
-            StartCoroutine(collision.collider.GetComponent<FadePlatformScript>().Fading());
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.collider.gameObject.CompareTag("Fadeplatform"))
+    //    {
+    //        StartCoroutine(collision.collider.GetComponent<FadePlatformScript>().Fading());
+    //    }
+    //}
 
     #endregion
 
