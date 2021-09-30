@@ -2,6 +2,7 @@ using ECM.Controllers;
 using ECM.Common;
 using UnityEngine;
 using UnityEngine.Serialization;
+using MoreMountains.Feedbacks;
 
 namespace ECM.Components
 {
@@ -19,7 +20,11 @@ namespace ECM.Components
 
         [SerializeField]
         private float _wallGrabbedMaxFallSpeed = 2.0f;
-        [SerializeField]
+
+        public MMFeedbacks JumpFeedback;
+        public MMFeedbacks LandFeedback;
+
+        public ParticleSystem dust;
         
 
         #endregion
@@ -67,6 +72,28 @@ namespace ECM.Components
         /// Overrides BaseCharacterController Animate method.
         /// </summary>
 
+        void CreateDust()
+        {
+            dust.Play();
+        }
+
+        protected override void Jump()
+        {
+            base.Jump();
+
+            if (!movement.wasGrounded && movement.isGrounded)
+            {
+                LandFeedback?.PlayFeedbacks();
+            }
+
+
+            if (_jump && movement.isGrounded)
+            {
+                JumpFeedback?.PlayFeedbacks();
+            }
+            
+        }
+
         protected override void Animate()
         {
             if ((moveDirection.x != 0 || moveDirection.y != 0) && movement.isGrounded)
@@ -91,6 +118,9 @@ namespace ECM.Components
         /// <summary>
         /// Perform Wall-Grab Mechanics. Called OnCollisionEnter, OnCollisionStay.
         /// </summary>
+        /// 
+
+
 
         private void WallGrab(Collision collision)
         {
