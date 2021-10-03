@@ -72,10 +72,7 @@ namespace ECM.Components
         /// Overrides BaseCharacterController Animate method.
         /// </summary>
 
-        void CreateDust()
-        {
-            dust.Play();
-        }
+        
 
         protected override void Jump()
         {

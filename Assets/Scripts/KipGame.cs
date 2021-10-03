@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 
 public class KipGame : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class KipGame : MonoBehaviour
     //respawn materials
     public Material main;
     public Material respawn;
+
+    //feedbacks
+    public MMFeedbacks spiritFeedback;
     #endregion
 
     #region METHODS
@@ -62,6 +66,7 @@ public class KipGame : MonoBehaviour
         {
             spiritTotal++;
             other.gameObject.SetActive(false);
+            spiritFeedback?.PlayFeedbacks();
         }
 
         
