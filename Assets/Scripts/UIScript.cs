@@ -13,6 +13,7 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //sets UI element equal to current spirit total
         total.text = kipGame.GetSpirit().ToString();
     }
 }

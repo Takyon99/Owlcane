@@ -61,7 +61,7 @@ public class KipGame : MonoBehaviour
         {
             StartCoroutine(Respawn());
         }
-
+        //collecting spirit
         if (other.gameObject.CompareTag("Spirit"))
         {
             spiritTotal++;
@@ -75,11 +75,12 @@ public class KipGame : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        //waystone activation
         if (other.gameObject.CompareTag("WayStone"))
         {
             if (spiritTotal >= other.GetComponent<WayStone>().RequiredSpirit() && (Input.GetButton("Channel"))) 
             {
-
+                //activates the activate function on the current waystone
                 other.GetComponent<WayStone>().Activate();
                 other.GetComponent<WayStone>().activated = true;
                     
@@ -87,14 +88,6 @@ public class KipGame : MonoBehaviour
             }
         }
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.collider.gameObject.CompareTag("Fadeplatform"))
-    //    {
-    //        StartCoroutine(collision.collider.GetComponent<FadePlatformScript>().Fading());
-    //    }
-    //}
 
     #endregion
 

@@ -9,14 +9,10 @@ public class FloatingScript : MonoBehaviour
     public float magnitude = 0.1f;
     public float time = 2f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
 
     IEnumerator Floating()
     {
+        //waits for 5 seconds before begining looping float animation
         yield return new WaitForSeconds(5);
         floater = transform.DOLocalMoveY(transform.position.y + magnitude, time).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
@@ -24,6 +20,7 @@ public class FloatingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //makes sure tween is killed when object is disabled
         if(this == null)
         {
             floater.Kill();
