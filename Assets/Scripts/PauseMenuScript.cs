@@ -14,11 +14,13 @@ public class PauseMenuScript : MonoBehaviour
 
     bool isResume = false;
     bool isRestart = false;
+    bool isOptions = false;
     bool isQuit = false;
 
 
     public GameObject resumeButton;
     public GameObject restartButton;
+    public GameObject optionsButton;
     public GameObject quitButton;
     
 
@@ -75,31 +77,51 @@ public class PauseMenuScript : MonoBehaviour
         {
             isResume = true;
             isRestart = false;
+            isOptions = false;
             isQuit = false;
 
             resumeButton.transform.DOScale(1.1f, 0.5f).SetUpdate(true);
             restartButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
+            optionsButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
             quitButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
         }
         else if (EventSystem.current.currentSelectedGameObject == restartButton && !isRestart)
         {
             isResume = false;
             isRestart = true;
+            isOptions = false;
             isQuit = false;
 
             resumeButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
             restartButton.transform.DOScale(1.1f, 0.5f).SetUpdate(true);
+            optionsButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
             quitButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
 
         }
+
+        else if (EventSystem.current.currentSelectedGameObject == optionsButton && !isOptions)
+        {
+            isResume = false;
+            isRestart = false;
+            isOptions = true;
+            isQuit = false;
+
+            resumeButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
+            restartButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
+            optionsButton.transform.DOScale(1.1f, 0.5f).SetUpdate(true);
+            quitButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
+        }
+    
         else if (EventSystem.current.currentSelectedGameObject == quitButton && !isQuit)
         {
             isResume = false;
             isRestart = false;
+            isOptions = false;
             isQuit = true;
 
             resumeButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
             restartButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
+            optionsButton.transform.DOScale(1.0f, 0.5f).SetUpdate(true);
             quitButton.transform.DOScale(1.1f, 0.5f).SetUpdate(true);
         }
     }

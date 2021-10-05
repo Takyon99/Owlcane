@@ -22,6 +22,8 @@ public class MainMenu : MonoBehaviour
     bool isCredits = false;
     bool isQuit = false;
 
+    bool isStarting = false;
+
     public GameObject icon;
 
     public GameObject startButton;
@@ -37,9 +39,16 @@ public class MainMenu : MonoBehaviour
     public Transform creditsIcon;
     public Transform quitIcon;
 
+
+    private void Start()
+    {
+        startButton.GetComponent<Button>().Select();
+    }
+
     void Update()
     {
         MenuAnimation();
+        
 
         if(optionsOn && Input.GetButtonDown("Cancel"))
         {
@@ -58,13 +67,16 @@ public class MainMenu : MonoBehaviour
   
     public void StartButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (!isStarting)
+        {
+            StartCoroutine(StartGame());
+        }
 
     }
 
     public void OptionsButton()
     {
-        optionsBack.GetComponent<Button>().Select();
+        
         optionsOn = true;
     }
 
@@ -91,6 +103,17 @@ public class MainMenu : MonoBehaviour
         optionsOn = false;
     }
 
+    public IEnumerator StartGame()
+    {
+        isStarting = true;
+        Tween pressIn = startButton.transform.DOScale(0.9f, 0.2f);
+        yield return pressIn.WaitForCompletion();
+        Tween pressOut = startButton.transform.DOScale(1.0f, 0.2f);
+        yield return pressOut.WaitForCompletion();
+        isStarting = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+    }
     public void MenuAnimation()
     {
         if (EventSystem.current.currentSelectedGameObject == startButton && !isStart )
