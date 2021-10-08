@@ -9,6 +9,10 @@ using DG.Tweening;
 
 public class MainMenu : MonoBehaviour
 {
+    //window
+    public GameObject creditsWindow;
+    public GameObject mainMenu;
+    public GameObject optionsWindow;
     //if either menu is currently visible
     public bool optionsOn = false;
     public bool creditsOn = false;
@@ -19,9 +23,11 @@ public class MainMenu : MonoBehaviour
     bool isCredits = false;
     bool isQuit = false;
 
-    //has the start button been pressed
+    //has the button been pressed
     bool isStarting = false;
-
+    bool isCreditsPressed = false;
+    bool isOptionsPressed = false;
+    bool isQuitting = false;
     //the menu icon that moves depending on selected button
     public GameObject icon;
     //main menu buttons
@@ -75,30 +81,27 @@ public class MainMenu : MonoBehaviour
     //sets the options menu to be visible
     public void OptionsButton()
     {
-        optionsOn = true;
+        StartCoroutine(Options());
     }
     //makes sure the back button is selected when credits window opens
     public void CreditsButton()
     {
-        creditsBack.GetComponent<Button>().Select();
-        creditsOn = true;
+        StartCoroutine(Credits());
     }
 
     public void QuitButton()
     {
-        Application.Quit();
+        StartCoroutine(QuitGame());
     }
     //back to the main menu from credits menu
     public void CreditsBackButton()
     {
-        creditsButton.GetComponent<Button>().Select();
-        creditsOn = false;
+        StartCoroutine(CreditsBack());
     }
     //back to main menu from options menu
     public void OptionsBackButton()
     {
-        optionsButton.GetComponent<Button>().Select();
-        optionsOn = false;
+        StartCoroutine(OptionsBack());
     }
     //start game coroutine
     public IEnumerator StartGame()
@@ -115,6 +118,88 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
+
+    public IEnumerator QuitGame()
+    {
+        if (!isQuitting)
+        {
+            isQuitting = true;
+            //animated the start button press
+            Tween pressIn = quitButton.transform.DOScale(0.9f, 0.2f);
+            yield return pressIn.WaitForCompletion();
+            Tween pressOut = quitButton.transform.DOScale(1.0f, 0.2f);
+            yield return pressOut.WaitForCompletion();
+            isQuitting = false;
+            Application.Quit();
+        }
+    }
+
+    public IEnumerator Credits()
+    {
+        if (!isCreditsPressed)
+        {
+            isCreditsPressed = true;
+            //animated the start button press
+            Tween pressIn = creditsButton.transform.DOScale(0.9f, 0.2f);
+            yield return pressIn.WaitForCompletion();
+            Tween pressOut = creditsButton.transform.DOScale(1.0f, 0.2f);
+            yield return pressOut.WaitForCompletion();         
+            //creditsWindow.SetActive(true);            
+            Tween Move = creditsWindow.transform.DOMoveY(transform.position.y, 1);
+            
+            creditsBack.GetComponent<Button>().Select();
+            creditsOn = true;
+            isCreditsPressed = false;
+        }
+    }
+
+    public IEnumerator CreditsBack()
+    {
+        Tween pressIn = creditsBack.transform.DOScale(0.9f, 0.2f);
+        yield return pressIn.WaitForCompletion();
+        Tween pressOut = creditsBack.transform.DOScale(1.0f, 0.2f);
+        yield return pressOut.WaitForCompletion();
+        Tween Move = creditsWindow.transform.DOMoveY(transform.position.y - 1000, 1);
+        yield return Move.WaitForCompletion();
+        //creditsWindow.SetActive(false);
+        
+        creditsButton.GetComponent<Button>().Select();
+        creditsOn = false;
+    }
+
+    public IEnumerator Options()
+    {
+        if (!isOptionsPressed)
+        {
+            isOptionsPressed = true;
+            //animated the start button press
+            Tween pressIn = optionsButton.transform.DOScale(0.9f, 0.2f);
+            yield return pressIn.WaitForCompletion();
+            Tween pressOut = optionsButton.transform.DOScale(1.0f, 0.2f);
+            yield return pressOut.WaitForCompletion();
+            //optionsWindow.SetActive(true);
+            Tween Move = optionsWindow.transform.DOMoveY(transform.position.y, 1);
+
+            optionsBack.GetComponent<Button>().Select();
+            optionsOn = true;
+            isOptionsPressed = false;
+        }
+    }
+    public IEnumerator OptionsBack()
+    {
+        Tween pressIn = optionsBack.transform.DOScale(0.9f, 0.2f);
+        yield return pressIn.WaitForCompletion();
+        Tween pressOut = optionsBack.transform.DOScale(1.0f, 0.2f);
+        yield return pressOut.WaitForCompletion();
+        Tween Move = optionsWindow.transform.DOMoveY(transform.position.y - 1000, 1);
+        yield return Move.WaitForCompletion();
+        //optionsWindow.SetActive(false);
+
+        optionsButton.GetComponent<Button>().Select();
+        optionsOn = false;
+    }
+
+
     //handles all menu animation
     public void MenuAnimation()
     {
