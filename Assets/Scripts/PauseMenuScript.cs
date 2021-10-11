@@ -10,9 +10,10 @@ public class PauseMenuScript : MonoBehaviour
 {
     //is the game paused
     public static bool isPaused = false;
-    //the pause menu game object
+    //windows
     public GameObject pauseMenu;
-
+    public GameObject optionsMenu;
+  
     //which button is currently selected
     bool isResume = false;
     bool isRestart = false;
@@ -24,8 +25,9 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject restartButton;
     public GameObject optionsButton;
     public GameObject quitButton;
-    
 
+    public GameObject optionsBack;
+                          
 
     void Update()
     {
@@ -48,17 +50,13 @@ public class PauseMenuScript : MonoBehaviour
     //unpauses the game
     public void ResumeGame()
     {
-        pauseMenu.SetActive(false);
-        isPaused = false;
-        Time.timeScale = 1;
+        StartCoroutine(Resume());
+        
     }
     //pauses the game
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
-        isPaused = true;
-        Time.timeScale = 0;
-        resumeButton.GetComponent<Button>().Select();
+        StartCoroutine(Pause());
     }
     //quits the game back to the main menu
     public void QuitGame()
@@ -71,6 +69,69 @@ public class PauseMenuScript : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OptionsButton()
+    {
+        StartCoroutine(Options());
+    }
+
+    public void OptionsBackButton()
+    {
+        StartCoroutine(OptionsBack());
+    }
+
+
+    public IEnumerator Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        isPaused = true;
+        Tween Up = pauseMenu.transform.DOMoveY(transform.position.y, 0.5f).SetUpdate(true).SetEase(Ease.OutBack);
+        yield return Up.WaitForCompletion();
+        resumeButton.GetComponent<Button>().Select();
+    }
+    public IEnumerator Resume()
+    {
+        Tween pressIn = resumeButton.transform.DOScale(0.9f, 0.2f).SetUpdate(true);
+        yield return pressIn.WaitForCompletion();
+        Tween pressOut = resumeButton.transform.DOScale(1.0f, 0.2f).SetUpdate(true);
+        yield return pressOut.WaitForCompletion();
+        Tween Down = pauseMenu.transform.DOMoveY(transform.position.y - 1000, 0.5f).SetUpdate(true).SetEase(Ease.InBack);
+        yield return Down.WaitForCompletion();
+        isPaused = false;
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+    }
+
+    IEnumerator Options()
+    {
+        Tween pressIn = optionsButton.transform.DOScale(0.9f, 0.2f).SetUpdate(true);
+        yield return pressIn.WaitForCompletion();
+        Tween pressOut = optionsButton.transform.DOScale(1.0f, 0.2f).SetUpdate(true);
+        yield return pressOut.WaitForCompletion();
+        optionsMenu.SetActive(true);
+        Tween PauseUp = pauseMenu.transform.DOMoveY(transform.position.y + 1000, 0.5f).SetUpdate(true);
+        Tween OptionsUp = optionsMenu.transform.DOMoveY(transform.position.y, 1f).SetUpdate(true).SetEase(Ease.OutBack);
+        yield return OptionsUp.WaitForCompletion();
+        pauseMenu.SetActive(false);
+        optionsBack.GetComponent<Button>().Select();
+
+    }
+
+    IEnumerator OptionsBack()
+    {
+        Tween pressIn = optionsBack.transform.DOScale(0.9f, 0.2f).SetUpdate(true);
+        yield return pressIn.WaitForCompletion();
+        Tween pressOut = optionsBack.transform.DOScale(1.0f, 0.2f).SetUpdate(true);
+        yield return pressOut.WaitForCompletion();
+        pauseMenu.SetActive(true);
+        Tween PauseDown = pauseMenu.transform.DOMoveY(transform.position.y, 1f).SetUpdate(true).SetEase(Ease.OutBack);
+        Tween OptionsDown = optionsMenu.transform.DOMoveY(transform.position.y - 1000, 0.5f).SetUpdate(true);
+        yield return OptionsDown.WaitForCompletion();
+        optionsMenu.SetActive(false);
+        optionsButton.GetComponent<Button>().Select();
+
     }
     //handles all of the pause menu animation 
     public void PauseAnimation()

@@ -20,6 +20,11 @@ public class KipGame : MonoBehaviour
 
     //feedbacks
     public MMFeedbacks spiritFeedback;
+
+    //sounds
+    public AudioSource spiritSound;
+    public AudioSource activationSound;
+    public AudioSource setSpawnSound;
     #endregion
 
     #region METHODS
@@ -54,12 +59,20 @@ public class KipGame : MonoBehaviour
         //waystone collision event
         if (other.gameObject.CompareTag("WayStone"))
         {
-            currentSpawnPoint = other.gameObject.GetComponentInChildren<Transform>().position;   
+            if(currentSpawnPoint != other.gameObject.GetComponentInChildren<Transform>().position)
+            {
+                currentSpawnPoint = other.gameObject.GetComponentInChildren<Transform>().position;
+                //play spawn audio here
+                setSpawnSound.Play();
+                //play particle effect here
+                other.GetComponentInChildren<ParticleSystem>().Play();
+            }   
         }
         //falling out of map
         if (other.gameObject.CompareTag("Bounds"))
         {
             StartCoroutine(Respawn());
+            //play respawn sound here
         }
         //collecting spirit
         if (other.gameObject.CompareTag("Spirit"))
@@ -67,10 +80,10 @@ public class KipGame : MonoBehaviour
             spiritTotal++;
             other.gameObject.SetActive(false);
             spiritFeedback?.PlayFeedbacks();
+            //play spirit sound here
+            spiritSound.Play();
         }
 
-        
-        
     }
 
     private void OnTriggerStay(Collider other)
@@ -83,7 +96,8 @@ public class KipGame : MonoBehaviour
                 //activates the activate function on the current waystone
                 other.GetComponent<WayStone>().Activate();
                 other.GetComponent<WayStone>().activated = true;
-                    
+                //play activation sound
+                activationSound.Play();
              
             }
         }

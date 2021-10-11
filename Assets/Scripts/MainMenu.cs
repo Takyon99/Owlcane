@@ -145,7 +145,7 @@ public class MainMenu : MonoBehaviour
             Tween pressOut = creditsButton.transform.DOScale(1.0f, 0.2f);
             yield return pressOut.WaitForCompletion();         
             //creditsWindow.SetActive(true);            
-            Tween Move = creditsWindow.transform.DOMoveY(transform.position.y, 1);
+            Tween Move = creditsWindow.transform.DOMoveY(transform.position.y, 1f).SetEase(Ease.OutBack);
             
             creditsBack.GetComponent<Button>().Select();
             creditsOn = true;
@@ -159,7 +159,7 @@ public class MainMenu : MonoBehaviour
         yield return pressIn.WaitForCompletion();
         Tween pressOut = creditsBack.transform.DOScale(1.0f, 0.2f);
         yield return pressOut.WaitForCompletion();
-        Tween Move = creditsWindow.transform.DOMoveY(transform.position.y - 1000, 1);
+        Tween Move = creditsWindow.transform.DOMoveY(transform.position.y - 1000, 1f).SetEase(Ease.InBack);
         yield return Move.WaitForCompletion();
         //creditsWindow.SetActive(false);
         
@@ -178,7 +178,7 @@ public class MainMenu : MonoBehaviour
             Tween pressOut = optionsButton.transform.DOScale(1.0f, 0.2f);
             yield return pressOut.WaitForCompletion();
             //optionsWindow.SetActive(true);
-            Tween Move = optionsWindow.transform.DOMoveY(transform.position.y, 1);
+            Tween Move = optionsWindow.transform.DOMoveY(transform.position.y, 1).SetEase(Ease.OutBack);
 
             optionsBack.GetComponent<Button>().Select();
             optionsOn = true;
@@ -191,7 +191,7 @@ public class MainMenu : MonoBehaviour
         yield return pressIn.WaitForCompletion();
         Tween pressOut = optionsBack.transform.DOScale(1.0f, 0.2f);
         yield return pressOut.WaitForCompletion();
-        Tween Move = optionsWindow.transform.DOMoveY(transform.position.y - 1000, 1);
+        Tween Move = optionsWindow.transform.DOMoveY(transform.position.y - 1000, 1).SetEase(Ease.InBack);
         yield return Move.WaitForCompletion();
         //optionsWindow.SetActive(false);
 

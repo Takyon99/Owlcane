@@ -11,7 +11,7 @@ public class GreetingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        window.transform.DOMoveY(transform.position.y + 1000, 2).SetUpdate(true);
+        window.transform.DOMoveY(transform.position.y + 1000, 1).SetUpdate(true).SetEase(Ease.OutBack);
         backButton.GetComponent<Button>().Select();
         Time.timeScale = 0;
     }
@@ -36,7 +36,7 @@ public class GreetingScript : MonoBehaviour
         yield return pressIn.WaitForCompletion();
         Tween pressOut = backButton.transform.DOScale(1.0f, 0.2f).SetUpdate(true);
         yield return pressOut.WaitForCompletion();
-        Tween down = window.transform.DOMoveY(transform.position.y - 1000, 2).SetUpdate(true);
+        Tween down = window.transform.DOMoveY(transform.position.y - 1000, 1).SetUpdate(true).SetEase(Ease.InBack);
         yield return down.WaitForCompletion();
         Time.timeScale = 1;
         this.gameObject.SetActive(false);

@@ -16,7 +16,7 @@ public class SettingsMenu : MonoBehaviour
     //selects the back button when opening
     private void OnEnable()
     {
-        optionsBack.GetComponent<Button>().Select();
+        //optionsBack.GetComponent<Button>().Select();
     }
 
     //sets master volume with slider
