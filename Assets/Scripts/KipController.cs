@@ -25,7 +25,8 @@ namespace ECM.Components
         public MMFeedbacks LandFeedback;
 
         public ParticleSystem dust;
-        
+
+        public AudioSource jumpSound;
 
         #endregion
 
@@ -86,7 +87,7 @@ namespace ECM.Components
 
             if (_jump && movement.isGrounded)
             {
-                JumpFeedback?.PlayFeedbacks();
+                jumpSound.Play();
             }
             
         }
