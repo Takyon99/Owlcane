@@ -2405,8 +2405,6 @@ GameObject:
   - component: {fileID: 202925990}
   - component: {fileID: 202925992}
   - component: {fileID: 202925991}
-  - component: {fileID: 202925994}
-  - component: {fileID: 202925993}
   m_Layer: 0
   m_Name: LevelFeedback
   m_TagString: Untagged
@@ -2509,8 +2507,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 202925991}
-  - {fileID: 202925994}
-  - {fileID: 202925993}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -2542,95 +2538,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
---- !u!114 &202925993
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202925989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c2ce51367856bd49b72678cc4263225, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: Sound
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    ExcludeFromHoldingPauses: 0
-    InterruptsOnStop: 1
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  Sfx: {fileID: 8300000, guid: 8c507f67546a1f341b5028478e54fab1, type: 3}
-  RandomSfx: []
-  TestButton: 0
-  TestStopButton: 0
-  PlayMethod: 0
-  PoolSize: 10
-  MinVolume: 1
-  MaxVolume: 1
-  MinPitch: 1
-  MaxPitch: 1
-  SfxAudioMixerGroup: {fileID: 0}
---- !u!114 &202925994
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202925989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbeb74f1ccfa52540b6fd5784df42533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: AudioSource
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    ExcludeFromHoldingPauses: 0
-    InterruptsOnStop: 1
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  TargetAudioSource: {fileID: 0}
-  Mode: 0
-  RandomSfx: []
-  MinVolume: 1
-  MaxVolume: 1
-  MinPitch: 1
-  MaxPitch: 1
-  SfxAudioMixerGroup: {fileID: 0}
 --- !u!1 &221852285
 GameObject:
   m_ObjectHideFlags: 0
